@@ -6,30 +6,42 @@
 
 // Write the assignment code here
 class Real{
-  private:
-    double x;
+  protected:
+    double a;
 
   public:
-    Real(double c) : x{c}{};
-    double GetReal()const {return x;};
-    Real operator* (double m)const {
-      m *= x;
+    Real(double b) : a{b}{};
+    double GetReal()const {return a;};
+    Real operator* (double c) {
+      Real k(GetReal() * c);
+      return k;
     };
 };
 
+class Complex : public Real{
+  protected:
+    double d;
 
-class Surreal{
-  private:
-    int a, b, c;
+  public:
+    Complex(double x, double y) : Real(x), d{y}{};
+    double GetImaginary()const {return d;};
+    Complex operator* (double l){
+      Complex h(GetReal() * l, GetImaginary() * l);
+      return h;
+    };
+};
+
+class Surreal : public Complex{
+  protected:
+    double c;
   
   public:
-    Surreal(int x, int y, int z) : Complex(x,y){c = z;};
-    int GetSurreal()const {return c;}
-    operator& *(Surreal& f){
-      f.a *= f.GetReal();
-      f.b *= f.GetImaginary();
-      f.c *= f.GetSurreal();
-    }
+    Surreal(double x, double y, double z) : Complex(x,y){c = z;};
+    double GetSurreal()const {return c;}
+    Surreal operator* (double f){
+      Surreal n(GetReal() * f, GetImaginary() * f, GetSurreal() *f);
+      return n;
+    };
 };
 
 //------------------------------

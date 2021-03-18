@@ -5,7 +5,32 @@
 //------------------------------
 
 // Write the assignment code here
+class Real{
+  private:
+    double x;
 
+  public:
+    Real(double c) : x{c}{};
+    double GetReal()const {return x;};
+    Real operator* (double m)const {
+      m *= x;
+    };
+};
+
+
+class Surreal{
+  private:
+    int a, b, c;
+  
+  public:
+    Surreal(int x, int y, int z) : Complex(x,y){c = z;};
+    int GetSurreal()const {return c;}
+    operator& *(Surreal& f){
+      f.a *= f.GetReal();
+      f.b *= f.GetImaginary();
+      f.c *= f.GetSurreal();
+    }
+};
 
 //------------------------------
 //   DO NOT MODIFY TEST CASES

@@ -13,7 +13,7 @@ class Real{
     Real(double b) : a{b}{};
     double GetReal()const {return a;};
     Real operator* (double c) {
-      Real k(GetReal() * c);
+      Real k(a * c);
       return k;
     };
 };
@@ -26,7 +26,7 @@ class Complex : public Real{
     Complex(double x, double y) : Real(x), d{y}{};
     double GetImaginary()const {return d;};
     Complex operator* (double l){
-      Complex h(GetReal() * l, GetImaginary() * l);
+      Complex h(a * l, d * l);
       return h;
     };
 };
@@ -39,7 +39,7 @@ class Surreal : public Complex{
     Surreal(double x, double y, double z) : Complex(x,y){c = z;};
     double GetSurreal()const {return c;}
     Surreal operator* (double f){
-      Surreal n(GetReal() * f, GetImaginary() * f, GetSurreal() *f);
+      Surreal n(a * f, d * f, c *f);
       return n;
     };
 };
